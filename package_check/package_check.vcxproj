@@ -618,6 +618,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PackageParser.cpp" />
     <ClCompile Include="package_check.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">Create</PrecompiledHeader>
@@ -633,6 +634,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PackageParser.h" />
     <ClInclude Include="package_check.h" />
     <ClInclude Include="package_check_global.h" />
     <ClInclude Include="resource.h" />

@@ -23,6 +23,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PackageParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="package_check.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,6 +34,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PackageParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="package_check.h">
       <Filter>Header Files</Filter>
     </ClInclude>
