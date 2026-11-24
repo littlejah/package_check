@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "c:/Program Files/JKQTPlotter/include",
+                "c:/vcpkg/installed/x64-windows-static/include/eigen3",
+                "c:/Qt/Qt-5.15.10w/include",
+                "c:/Qt/Qt-5.15.10w/include/QtCore",
+                "c:/Qt/Qt-5.15.10w/include/QtWidgets",
+                "c:/Qt/Qt-5.15.10w/include/QtSql",
+                "C:/Program Files (x86)/QuaZip/include/QuaZip-Qt5-1.4/quazip",
+                "c:/Program Files/PostgreSQL/16/include",
+                "C:/SDK24/include/nrxuigate",
+                "C:/SDK24/include/nrxdbgate",
+                "C:/SDK24/include/nrxhostgate",
+                "C:/SDK24/include/Kernel/DevInclude/DbRoot",
+                "C:/SDK24/include/Drawing/ActiveX",
+                "C:/SDK24/include/MAPI",
+                "C:/SDK24/include/Drawing/ActiveX/OdaX",
+                "C:/SDK24/include/Drawing/Include",
+                "C:/SDK24/include-x64/Drawing/ActiveX/OdaX",
+                "C:/SDK24/include/KernelBase/Include",
+                "C:/SDK24/include/Kernel/Include",
+                "C:/SDK24/include/nrxgate",
+                "C:/SDK24/include/arxgate",
+                "C:/SDK24/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "PACKAGE_CHECK_LIB"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+***************************************************************************************************
+ Copyright (C) 2023 The Qt Company Ltd.
+ SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
+***************************************************************************************************
+-->
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugAI|x64">
+      <Configuration>DebugAI</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugNC24.1AI|x64">
+      <Configuration>DebugNC24.1AI</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugNC24.1|x64">
+      <Configuration>DebugNC24.1</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugNC25|x64">
+      <Configuration>DebugNC25</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugNC26|x64">
+      <Configuration>DebugNC26</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseNC24.1|x64">
+      <Configuration>ReleaseNC24.1</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseNC25|x64">
+      <Configuration>ReleaseNC25</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseNC26|x64">
+      <Configuration>ReleaseNC26</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C4E8A1F2-7B36-4D90-A5E1-9F2C6B8D0E41}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.10w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.10w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.10w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.10w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.16w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.18w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.10w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+    <QtPlugin>true</QtPlugin>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.10w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport;charts</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+    <QtPlugin>true</QtPlugin>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.16w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+    <QtPlugin>true</QtPlugin>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'" Label="QtSettings">
+    <QtInstall>Qt_Qt-5.15.18w</QtInstall>
+    <QtModules>core;xml;sql;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+    <QtPlugin>true</QtPlugin>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_debugcfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_debugcfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_debugcfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_debugcfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_debugcfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_debugcfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_releasecfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_releasecfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_releasecfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="C:\SDK24\include\arxgate\rxsdk_releasecfg.props" />
+    <Import Project="C:\SDK24\include\Qt\qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.10w\include\QtCore;c:\Qt\Qt-5.15.10w\include\QtWidgets;c:\Qt\Qt-5.15.10w\include\QtSql;C:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip;c:\Program Files\PostgreSQL\16\include\;C:\SDK24\include\nrxuigate;C:\SDK24\include\nrxdbgate;C:\SDK24\include\nrxhostgate;C:\SDK24\include\Kernel\DevInclude\DbRoot;C:\SDK24\include\Drawing\ActiveX;C:\SDK24\include\MAPI;C:\SDK24\include\Drawing\ActiveX\OdaX;C:\SDK24\include\Drawing\Include;C:\SDK24\include-x64\Drawing\ActiveX\OdaX;C:\SDK24\include\KernelBase\Include;C:\SDK24\include\Kernel\Include;C:\SDK24\include\nrxgate;C:\SDK24\include\arxgate;C:\SDK24\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>$(MSBuildProjectDirectory);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.10w\include\QtCore;c:\Qt\Qt-5.15.10w\include\QtWidgets;c:\Qt\Qt-5.15.10w\include\QtSql;C:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip;c:\Program Files\PostgreSQL\16\include\;C:\SDK24\include-x64\Drawing;C:\SDK24\include-x64;C:\SDK24\include\Qt;C:\SDK24\include\nrxuigate;C:\SDK24\include\nrxpropsgate;C:\SDK24\include\nrxmvgate;C:\SDK24\include\nrxhostgate;C:\SDK24\include\nrxdbgate;C:\SDK24\include\MAPI;C:\SDK24\include\hostPointCloudsGate;C:\SDK24\include\arxgate;C:\SDK24\include-x64\Drawing\ActiveX\OdaX;C:\SDK24\include\nrxgate;C:\SDK24\include;$(MSBuildProjectDirectory);$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>$(MSBuildProjectDirectory);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.10w\include\QtCore;c:\Qt\Qt-5.15.10w\include\QtWidgets;c:\Qt\Qt-5.15.10w\include\QtSql;C:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip;c:\Program Files\PostgreSQL\16\include\;C:\SDK24.1\include-x64\Drawing;C:\SDK24.1\include-x64;C:\SDK24.1\include\Qt;C:\SDK24.1\include\nrxuigate;C:\SDK24.1\include\nrxpropsgate;C:\SDK24.1\include\nrxmvgate;C:\SDK24.1\include\nrxhostgate;C:\SDK24.1\include\nrxdbgate;C:\SDK24.1\include\MAPI;C:\SDK24.1\include\hostPointCloudsGate;C:\SDK24.1\include\arxgate;C:\SDK24.1\include-x64\Drawing\ActiveX\OdaX;C:\SDK24.1\include\nrxgate;C:\SDK24.1\include;$(MSBuildProjectDirectory);$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.10w\include\QtCore;c:\Qt\Qt-5.15.10w\include\QtWidgets;c:\Qt\Qt-5.15.10w\include\QtSql;C:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip;c:\Program Files\PostgreSQL\16\include\;C:\SDK24.1\include-x64\Drawing;C:\SDK24.1\include-x64;C:\SDK24.1\include\Qt;C:\SDK24.1\include\nrxuigate;C:\SDK24.1\include\nrxpropsgate;C:\SDK24.1\include\nrxmvgate;C:\SDK24.1\include\nrxhostgate;C:\SDK24.1\include\nrxdbgate;C:\SDK24.1\include\MAPI;C:\SDK24.1\include\hostPointCloudsGate;C:\SDK24.1\include\arxgate;C:\SDK24.1\include-x64\Drawing\ActiveX\OdaX;C:\SDK24.1\include\nrxgate;C:\SDK24.1\include;$(MSBuildProjectDirectory);$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.16w\include\QtCore;c:\Qt\Qt-5.15.16w\include\QtWidgets;c:\Qt\Qt-5.15.16w\include\QtSql;C:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip;c:\Program Files\PostgreSQL\16\include\;C:\SDK25\include-x64\Drawing;C:\SDK25\include-x64;C:\SDK25\include\Qt;C:\SDK25\include\nrxuigate;C:\SDK25\include\nrxpropsgate;C:\SDK25\include\nrxmvgate;C:\SDK25\include\nrxhostgate;C:\SDK25\include\nrxdbgate;C:\SDK25\include\MAPI;C:\SDK25\include\hostPointCloudsGate;C:\SDK25\include\arxgate;C:\SDK25\include-x64\Drawing\ActiveX\OdaX;C:\SDK25\include\nrxgate;C:\SDK25\include;$(MSBuildProjectDirectory);$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.18w\include\QtCore;c:\Qt\Qt-5.15.18w\include\QtWidgets;c:\Qt\Qt-5.15.18w\include\QtSql;C:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip;c:\Program Files\PostgreSQL\16\include\;C:\SDK26_RC\include-x64\Drawing;C:\SDK26_RC\include-x64;C:\SDK26_RC\include\Qt;C:\SDK26_RC\include\nrxuigate;C:\SDK26_RC\include\nrxpropsgate;C:\SDK26_RC\include\nrxmvgate;C:\SDK26_RC\include\nrxhostgate;C:\SDK26_RC\include\nrxdbgate;C:\SDK26_RC\include\MAPI;C:\SDK26_RC\include\hostPointCloudsGate;C:\SDK26_RC\include\arxgate;C:\SDK26_RC\include-x64\Drawing\ActiveX\OdaX;C:\SDK26_RC\include\nrxgate;C:\SDK26_RC\include;$(MSBuildProjectDirectory);$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.10w\include\QtCore;c:\Qt\Qt-5.15.10w\include\QtWidgets;c:\Qt\Qt-5.15.10w\include\QtSql;c:\vcpkg\installed\x64-windows-static\include\;c:\Program Files\PostgreSQL\16\include\;C:\SDK24\include\nrxuigate;C:\SDK24\include\nrxhostgate;C:\SDK24\include\nrxdbgate;C:\SDK24\include\nrxgate;C:\SDK24\include\Kernel\DevInclude\DbRoot;C:\SDK24\include\Drawing\ActiveX;C:\SDK24\include\MAPI;C:\SDK24\include\Drawing\ActiveX\OdaX;C:\SDK24\include\Drawing\Include;C:\SDK24\include-x64\Drawing\ActiveX\OdaX;C:\SDK24\include\KernelBase\Include;C:\SDK24\include\Kernel\Include;C:\SDK24\include\arxgate;c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;C:\SDK24\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>$(MSBuildProjectDirectory);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\Qt\Qt-5.15.10w\include\QtCore;c:\Qt\Qt-5.15.10w\include\QtWidgets;c:\Qt\Qt-5.15.10w\include\QtSql;c:\vcpkg\installed\x64-windows-static\include\;c:\Program Files\PostgreSQL\16\include\;c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;C:\SDK24.1\include\hostPointCloudsGate;C:\SDK24.1\include\Qt;C:\SDK24.1\include\nrxpropsgate;C:\SDK24.1\include\nrxuigate;C:\SDK24.1\include\nrxmvgate;C:\SDK24.1\include\nrxhostgate;C:\SDK24.1\include\nrxdbgate;C:\SDK24.1\include\nrxgate;C:\SDK24.1\include\MAPI;C:\SDK24.1\include-x64\Drawing\ActiveX\OdaX;C:\SDK24.1\include\arxgate;C:\SDK24.1\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>$(MSBuildProjectDirectory);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\Qt\Qt-5.15.16w\include\QtCore;c:\Qt\Qt-5.15.16w\include\QtWidgets;c:\Qt\Qt-5.15.16w\include\QtSql;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\vcpkg\installed\x64-windows-static\include\;c:\Program Files\PostgreSQL\16\include\;c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;C:\SDK25\include\hostPointCloudsGate;C:\SDK25\include\Qt;C:\SDK25\include\nrxpropsgate;C:\SDK25\include\nrxuigate;C:\SDK25\include\nrxmvgate;C:\SDK25\include\nrxhostgate;C:\SDK25\include\nrxdbgate;C:\SDK25\include\nrxgate;C:\SDK25\include\MAPI;C:\SDK25\include-x64\Drawing\ActiveX\OdaX;C:\SDK25\include\arxgate;C:\SDK25\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>$(MSBuildProjectDirectory);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'">
+    <ExternalIncludePath>c:\Program Files\JKQTPlotter\include\;c:\Qt\Qt-5.15.18w\include\QtCore;c:\Qt\Qt-5.15.18w\include\QtWidgets;c:\Qt\Qt-5.15.18w\include\QtSql;c:\vcpkg\installed\x64-windows-static\include\eigen3;c:\vcpkg\installed\x64-windows-static\include\;c:\Program Files\PostgreSQL\16\include\;c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;C:\SDK26_RC\include\hostPointCloudsGate;C:\SDK26_RC\include\Qt;C:\SDK26_RC\include\nrxpropsgate;C:\SDK26_RC\include\nrxuigate;C:\SDK26_RC\include\nrxmvgate;C:\SDK26_RC\include\nrxhostgate;C:\SDK26_RC\include\nrxdbgate;C:\SDK26_RC\include\nrxgate;C:\SDK26_RC\include\MAPI;C:\SDK26_RC\include-x64\Drawing\ActiveX\OdaX;C:\SDK26_RC\include\arxgate;C:\SDK26_RC\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>$(MSBuildProjectDirectory);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Label="QtIDC" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtIDC>false</QtIDC>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'" Label="QtIDC">
+    <QtIDC>false</QtIDC>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>c:\Qt\Qt-5.15.10w\lib\;C:\Program Files\PostgreSQL\16\lib;C:\SDK24\lib-x64\TD;C:\SDK24\lib-x64;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;C:\vcpkg\installed\x64-windows-static\lib;c:\Program Files\JKQTPlotter\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;quazip1-qt5.lib;bz2.lib;zlib.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /NODEFAULTLIB:MSVCRTD %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>c:\Qt\Qt-5.15.10w\lib\;C:\Program Files\PostgreSQL\16\lib;C:\SDK24\lib-x64;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;C:\vcpkg\installed\x64-windows-static\lib;c:\Program Files\JKQTPlotter\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;quazip1-qt5.lib;bz2.lib;zlib.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /NODEFAULTLIB:MSVCRTD %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Y- /FS /wd4828 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>c:\Program Files\JKQTPlotter\lib;c:\Qt\Qt-5.15.10w\lib\;C:\Program Files\PostgreSQL\16\lib;C:\SDK24.1\lib-x64;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;quazip1-qt5.lib;bz2.lib;zlib.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Y- /FS /wd4828 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>c:\Program Files\JKQTPlotter\lib;c:\Qt\Qt-5.15.10w\lib\;C:\Program Files\PostgreSQL\16\lib;C:\SDK24.1\lib-x64;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;quazip1-qt5.lib;bz2.lib;zlib.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8  /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>c:\Qt\Qt-5.15.16w\lib\;C:\Program Files\PostgreSQL\16\lib;C:\SDK25\lib-x64;c:\Program Files (x86)\QuaZip\lib\;C:\Program Files\JKQTPlotter\lib;C:\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;quazip1-qt5.lib;bz2.lib;zlib.lib;JKQTPlotter5_Release.lib;JKQTMathText5_Release.lib;JKQTMath5_Release.lib;JKQTCommon5_Release.lib;JKQTFastPlotter5_Release.lib;JKQTPlotter5_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>c:\Qt\Qt-5.15.18w\lib\;C:\Program Files\PostgreSQL\16\lib;C:\SDK26_RC\lib-x64;c:\Program Files (x86)\QuaZip\lib\;C:\Program Files\JKQTPlotter\lib;C:\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;quazip1-qt5.lib;bz2.lib;zlib.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>c:\Program Files\JKQTPlotter\lib;C:\Program Files\PostgreSQL\16\lib;C:\SDK24\lib-x64\TD;C:\SDK24\lib-x64;C:\Qt\Qt-5.15.10w\lib;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;Qt5Sql.lib;Qt5Sqld.lib;quazip1-qt5.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <QtUic>
+      <QtUicDir>$(QtIntDir)uic\</QtUicDir>
+    </QtUic>
+    <QtMoc>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(IntDir)moc\</QtMocDir>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\PostgreSQL\16\lib;C:\SDK24.1\lib-x64;C:\Qt\Qt-5.15.10w\lib;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;C:\Program Files\JKQTPlotter\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;Qt5Sql.lib;Qt5Sqld.lib;quazip1-qt5.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <QtUic>
+      <QtUicDir>$(QtIntDir)uic\</QtUicDir>
+    </QtUic>
+    <QtMoc>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(IntDir)moc\</QtMocDir>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\PostgreSQL\16\lib;C:\SDK25\lib-x64;C:\Qt\Qt-5.15.16w\lib;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;C:\Program Files\JKQTPlotter\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;Qt5Sql.lib;Qt5Sqld.lib;quazip1-qt5.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <QtUic>
+      <QtUicDir>$(QtIntDir)uic\</QtUicDir>
+    </QtUic>
+    <QtMoc>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(IntDir)moc\</QtMocDir>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'">
+    <ClCompile>
+      <AdditionalOptions>/utf-8 /Zc:referenceBinding- /D_HAS_STD_BYTE=0 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>c:\Program Files (x86)\QuaZip\include\QuaZip-Qt5-1.4\quazip\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\PostgreSQL\16\lib;C:\SDK26_RC\lib-x64;C:\Qt\Qt-5.15.18w\lib;c:\Program Files (x86)\QuaZip\lib\;C:\vcpkg\installed\x64-windows\lib;C:\Program Files\JKQTPlotter\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Network.lib;Qt5Sql.lib;Qt5Sqld.lib;quazip1-qt5.lib;JKQTPlotter5_Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <QtUic>
+      <QtUicDir>$(QtIntDir)uic\</QtUicDir>
+    </QtUic>
+    <QtMoc>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(IntDir)moc\</QtMocDir>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;ENTRO_ENABLE_AI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;ENTRO_ENABLE_AI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;CURRENT_NC25;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;CURRENT_NC26;_MCS_CORE_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;CURRENT_NC25;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>PACKAGE_CHECK_LIB;CURRENT_NC26;_MCS_CORE_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="package_check.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAI|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugNC24.1AI|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugNC25|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugNC26|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseNC24.1|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseNC25|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseNC26|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="package_check.h" />
+    <ClInclude Include="package_check_global.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="package_check.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

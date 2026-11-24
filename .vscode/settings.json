@@ -1,0 +1,28 @@
+{
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": false,
+  "files.eol": "\r\n",
+  "files.associations": {
+    "*.ui": "xml",
+    "*.cpp": "cpp",
+    "*.h": "cpp",
+    "*.hpp": "cpp"
+  },
+  "[xml]": {
+    "files.encoding": "utf8",
+    "files.eol": "\n"
+  },
+  "[ui]": {
+    "files.encoding": "utf8",
+    "files.eol": "\n"
+  },
+
+  "[cpp]": {
+    "files.encoding": "utf8",
+    "files.eol": "\r\n"
+  },
+  "[h]": {
+    "files.encoding": "utf8",
+    "files.eol": "\r\n"
+  }
+}

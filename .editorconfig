@@ -1,0 +1,17 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+
+[*.ui]
+charset = utf-8
+end_of_line = lf
+
+[*.md]
+charset = utf-8
+end_of_line = lf
+
+[*.{cpp,h,hpp}]
+charset = utf-8
+end_of_line = crlf
