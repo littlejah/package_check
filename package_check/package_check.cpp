@@ -85,7 +85,12 @@ bool isCommandRegistered(const QString& name)
     if (acedRegCmds->lookupGlobalCmd(global.c_str()) != nullptr)
         return true;
 
+#if defined(CURRENT_NC26)
     return lispGetCName(local) || lispGetCName(global);
+#else
+    return false;
+#endif
+
 }
 
 // Команды, которых нет в стеке nanoCAD. Порядок исходного списка сохраняется,
