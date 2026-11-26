@@ -176,12 +176,12 @@ QString decodeCfgValue(const QString& raw)
     return trimmed;
 }
 
-// [\ConfigMan\Commands] — группа, не команда. Команда — дочерняя секция
-// [\ConfigMan\Commands\Command_N], у неё есть Intername.
+// [\ConfigMan\Commands] — группа, не команда. Команда — любая дочерняя секция:
+// [\ConfigMan\Commands\Command_1] или [\configman\commands\HelloNRX].
 bool isCatalogSection(const QString& section)
 {
     return section.startsWith(
-        QLatin1String("\\ConfigMan\\Commands\\Command"),
+        QLatin1String("\\ConfigMan\\Commands\\"),
         Qt::CaseInsensitive);
 }
 
@@ -239,23 +239,26 @@ PackageDescription readPackageFile(const QString& packagePath)
             continue;
         }
 
-        // В пакете бывают и другие компоненты. Загружаем только NRX:
-        // именно их acrxEntryPoint регистрирует команды.
+        // Тип модуля решает, чем его грузить. Расширение файла для этого не используется:
+        // в пакете SDK есть и .dll с ModuleType="NRX", и .dll с ModuleType="MGD".
         if (element.compare(QLatin1String("ComponentEntry"), Qt::CaseInsensitive) == 0)
         {
-            const QString moduleType = xmlAttribute(xml.attributes(), "ModuleType");
-            if (moduleType.compare(QLatin1String("NRX"), Qt::CaseInsensitive) != 0)
-                continue;
             const QString moduleName = xmlAttribute(xml.attributes(), "ModuleName");
-            if (!moduleName.isEmpty())
-                result.nrxModules.append(resolveAgainstDirectory(result.directory, moduleName));
+            if (moduleName.isEmpty())
+                continue;
+
+            PackageModule module;
+            module.type = xmlAttribute(xml.attributes(), "ModuleType").trimmed().toUpper();
+            module.appName = xmlAttribute(xml.attributes(), "AppName").trimmed();
+            module.path = resolveAgainstDirectory(result.directory, moduleName);
+            result.modules.append(module);
         }
     }
 
     if (xml.hasError())
         result.error = xml.errorString();
-    else if (result.cfgFiles.isEmpty() && result.nrxModules.isEmpty())
-        result.error = QString::fromWCharArray(L"В пакете нет cfg и nrx-модулей.");
+    else if (result.cfgFiles.isEmpty() && result.modules.isEmpty())
+        result.error = QString::fromWCharArray(L"В пакете нет cfg и модулей.");
 
     return result;
 }
@@ -276,6 +279,9 @@ ParsedCfg readCfgFile(const QString& cfgPath)
     QString normalized = text;
     normalized.replace(QLatin1String("\r\n"), QLatin1String("\n"));
     normalized.replace(QLatin1Char('\r'), QLatin1Char('\n'));
+    // В cfg nanoCAD вертикальная черта — перевод строки:
+    // [\menu\A] |name=sA |intername=sCmd  это секция и два поля.
+    normalized.replace(QLatin1Char('|'), QLatin1Char('\n'));
 
     const QString cfgDirectory = QFileInfo(cfgPath).absolutePath();
     QString section;

@@ -1,18 +1,29 @@
 #pragma once
 
+#include <QList>
 #include <QString>
 #include <QStringList>
+
+// Один ComponentEntry пакета.
+// В примерах SDK встречаются ModuleType: NRX, MGD, NSF и LISP.
+// Тип берётся из манифеста как есть: .dll может быть и NRX, и MGD.
+struct PackageModule
+{
+    QString type;     // NRX, MGD, NSF, LISP или иной тип из XML.
+    QString appName;  // Атрибут AppName, подпись в отчёте.
+    QString path;     // Абсолютный путь к ModuleName.
+};
 
 // Результат разбора .package.
 // Файл — XML-манифест nanoCAD, не архив. Корень пакета — каталог,
 // в котором лежит сам .package: от него считаются FileName и ModuleName.
 struct PackageDescription
 {
-    QString name;            // Атрибут Name у ApplicationPackage.
-    QString directory;       // Каталог пакета, база для относительных путей.
-    QStringList cfgFiles;    // Абсолютные пути cfg из ConfigEntry.
-    QStringList nrxModules;  // Абсолютные пути nrx из ComponentEntry с ModuleType="NRX".
-    QString error;           // Пусто, если XML разобран и в пакете есть cfg или nrx.
+    QString name;                  // Атрибут Name у ApplicationPackage.
+    QString directory;             // Каталог пакета, база для относительных путей.
+    QStringList cfgFiles;          // Абсолютные пути cfg из ConfigEntry.
+    QList<PackageModule> modules;  // ComponentEntry в порядке файла.
+    QString error;                 // Пусто, если XML разобран и в пакете есть cfg или модули.
 };
 
 // Команды, собранные из одного cfg.

@@ -17,6 +17,7 @@ namespace {
 // не работает: loadModule возвращает ошибку и для уже загруженного модуля.
 struct ModuleLoadResult
 {
+    QString type;
     QString path;
     bool loaded = false;
     QString message;
@@ -32,22 +33,59 @@ void appendUnique(QStringList& list, const QStringList& extra)
     }
 }
 
-// Имя из cfg и cui совпадает с локальным именем addCommand (APP_INSERT_DM).
-// Глобальное имя обычно то же, но с префиксом подчёркивания (_APP_INSERT_DM).
-// Проверяем оба варианта: часть команд регистрируют только одним из них.
-bool isCommandRegistered(const QString& name)
+bool runHostCommand(const std::wstring& commandLine);
+
+// (getcname "имя") возвращает локальное имя команды или nil, если её нет.
+// Так видны команды LISP, .NET и NSF, которых нет в стеке NRX.
+// ncedGetCName в nanoCAD не реализован, поэтому вызываем саму LISP-функцию.
+bool lispGetCName(const std::wstring& commandName)
 {
-    if (acedRegCmds == nullptr)
+    if (commandName.empty())
         return false;
 
+    QString escaped = QString::fromStdWString(commandName);
+    escaped.replace(QLatin1Char('\\'), QLatin1String("\\\\"));
+    escaped.replace(QLatin1Char('"'), QLatin1String("\\\""));
+
+    const QString expression = QString::fromWCharArray(
+        L"(setq PKGCHECK_CNAME (getcname \"%1\"))").arg(escaped);
+    if (!runHostCommand(expression.toStdWString()))
+        return false;
+
+    resbuf* value = nullptr;
+    if (ncedGetSym(L"PKGCHECK_CNAME", &value) != RTNORM || value == nullptr)
+        return false;
+
+    const bool found = value->restype == RTSTR
+        && value->resval.rstring != nullptr
+        && value->resval.rstring[0] != L'\0';
+    ncutRelRb(value);
+    return found;
+}
+
+// Командная строка ищет имя по всем группам и без учёта регистра.
+// lookupLocalCmd и lookupGlobalCmd смотрят стек NRX.
+// iterator() и ncedGetCName в nanoCAD не реализованы и поднимают NOT_IMPLEMENTED.
+bool isCommandRegistered(const QString& name)
+{
+    if (acedRegCmds == nullptr || name.isEmpty())
+        return false;
+
+    // Стек команд nanoCAD хранит имена в верхнем регистре.
+    // const std::wstring local = name.toUpper().toStdWString();
     const std::wstring local = name.toStdWString();
+    const std::wstring global = std::wstring(L"_") + local;
+
     if (acedRegCmds->lookupLocalCmd(local.c_str()) != nullptr)
         return true;
     if (acedRegCmds->lookupGlobalCmd(local.c_str()) != nullptr)
         return true;
+    if (acedRegCmds->lookupLocalCmd(global.c_str()) != nullptr)
+        return true;
+    if (acedRegCmds->lookupGlobalCmd(global.c_str()) != nullptr)
+        return true;
 
-    const std::wstring global = std::wstring(L"_") + local;
-    return acedRegCmds->lookupGlobalCmd(global.c_str()) != nullptr;
+    return lispGetCName(local) || lispGetCName(global);
 }
 
 // Команды, которых нет в стеке nanoCAD. Порядок исходного списка сохраняется,
@@ -84,31 +122,101 @@ QString formatCommandSection(const QString& title, const QStringList& names, con
     return text;
 }
 
-ModuleLoadResult loadNrxModule(const QString& path)
+// ncedCmd выполняет команду синхронно и забирает следующие RTSTR как ответы на запросы.
+// Так NETLOAD и NSF получают путь к файлу и не открывают диалог выбора.
+// Строка должна жить, пока ncutBuildList её копирует в resbuf.
+bool runHostCommand(const std::wstring& commandLine)
+{
+    resbuf* arguments = ncutBuildList(RTSTR, commandLine.c_str(), RTNONE);
+    if (arguments == nullptr)
+        return false;
+
+    const int code = ncedCmd(arguments);
+    ncutRelRb(arguments);
+    return code == RTNORM;
+}
+
+bool runHostCommand(const wchar_t* command, const std::wstring& argument)
+{
+    resbuf* arguments = ncutBuildList(RTSTR, command, RTSTR, argument.c_str(), RTNONE);
+    if (arguments == nullptr)
+        return false;
+
+    const int code = ncedCmd(arguments);
+    ncutRelRb(arguments);
+    return code == RTNORM;
+}
+
+// (load "path") — встроенная функция LISP. Путь с прямыми слэшами,
+// кавычки и обратные слэши экранируются, иначе выражение обрывается.
+bool loadLispFile(const QString& path)
+{
+    QString escaped = QDir::fromNativeSeparators(path);
+    escaped.replace(QLatin1Char('\\'), QLatin1Char('/'));
+    escaped.replace(QLatin1String("\""), QLatin1String("\\\""));
+    const QString expression = QString::fromWCharArray(L"(load \"%1\")").arg(escaped);
+    return runHostCommand(expression.toStdWString());
+}
+
+ModuleLoadResult loadPackageModule(const PackageModule& module)
 {
     ModuleLoadResult result;
-    result.path = path;
+    result.path = module.path;
+    result.type = module.type;
 
-    if (!QFileInfo::exists(path))
+    if (!QFileInfo::exists(module.path))
     {
         result.message = QString::fromWCharArray(L"файл не найден");
         return result;
     }
 
-    if (acrxDynamicLinker == nullptr)
+    const QString native = QDir::toNativeSeparators(QFileInfo(module.path).absoluteFilePath());
+    const std::wstring modulePath = native.toStdWString();
+
+    // NRX регистрирует команды в acrxEntryPoint. loadModule подходит и для .nrx, и для .dll,
+    // если в пакете у сборки указан тип NRX. printit = false: текст загрузки пишем сами.
+    if (module.type == QLatin1String("NRX"))
     {
-        result.message = QString::fromWCharArray(L"динамический компоновщик недоступен");
+        if (acrxDynamicLinker == nullptr)
+        {
+            result.message = QString::fromWCharArray(L"динамический компоновщик недоступен");
+            return result;
+        }
+        result.loaded = acrxDynamicLinker->loadModule(modulePath.c_str(), false);
+        if (!result.loaded)
+            result.message = QString::fromWCharArray(L"loadModule вернул ошибку (модуль мог быть уже загружен)");
         return result;
     }
 
-    // loadModule надёжнее вызывается с нативными разделителями и полным путём.
-    // Второй аргумент — printit: сообщения загрузки в командную строку не пишем,
-    // итог попадёт в окно отчёта.
-    const QString native = QDir::toNativeSeparators(QFileInfo(path).absoluteFilePath());
-    const std::wstring modulePath = native.toStdWString();
-    result.loaded = acrxDynamicLinker->loadModule(modulePath.c_str(), false);
-    if (!result.loaded)
-        result.message = QString::fromWCharArray(L"loadModule вернул ошибку (модуль мог быть уже загружен)");
+    // MGD — управляемая сборка .NET. Команда NETLOAD есть в справке nanoCAD.
+    // Глобальное имя с подчёркиванием не зависит от языка интерфейса.
+    if (module.type == QLatin1String("MGD"))
+    {
+        result.loaded = runHostCommand(L"_NETLOAD", modulePath);
+        if (!result.loaded)
+            result.message = QString::fromWCharArray(L"NETLOAD не выполнился");
+        return result;
+    }
+
+    // NSF — XML-пакет скриптовых команд (JScript/VBScript). Его грузит команда NSF.
+    if (module.type == QLatin1String("NSF"))
+    {
+        result.loaded = runHostCommand(L"_NSF", modulePath);
+        if (!result.loaded)
+            result.message = QString::fromWCharArray(L"NSF не выполнился");
+        return result;
+    }
+
+    // LISP доступен на всю сессию nanoCAD, не только в текущем чертеже.
+    if (module.type == QLatin1String("LISP"))
+    {
+        result.loaded = loadLispFile(native);
+        if (!result.loaded)
+            result.message = QString::fromWCharArray(L"(load ...) не выполнился");
+        return result;
+    }
+
+    result.message = QString::fromWCharArray(L"неизвестный тип модуля");
     return result;
 }
 
@@ -133,8 +241,8 @@ void showReport(QWidget* parent, const QString& report)
 }
 
 // Команда PACKAGE_CHECK.
-// Сначала разбираем пакет и cfg, затем загружаем nrx и только после этого
-// сверяем имена со стеком команд: регистрация происходит в acrxEntryPoint модулей.
+// Сначала разбираем пакет и cfg, затем загружаем модули и только после этого
+// сверяем имена со стеком команд: регистрация происходит при загрузке NRX, .NET, NSF и LISP.
 void package_check_cmd()
 {
     // QWinWidget привязывает Qt-диалоги к главному окну nanoCAD,
@@ -153,7 +261,7 @@ void package_check_cmd()
     const PackageDescription package = readPackageFile(packagePath);
     // Частичный разбор ещё полезен: например, XML оборвался после списка модулей.
     // Полностью пустой результат вместе с ошибкой показывать в отчёте нечего.
-    if (!package.error.isEmpty() && package.cfgFiles.isEmpty() && package.nrxModules.isEmpty())
+    if (!package.error.isEmpty() && package.cfgFiles.isEmpty() && package.modules.isEmpty())
     {
         QMessageBox::warning(
             &host,
@@ -202,11 +310,12 @@ void package_check_cmd()
         }
     }
 
-    // Модули грузим после разбора файлов. Неудачная загрузка не прерывает проверку:
-    // команды могли зарегистрироваться раньше, при старте nanoCAD.
+    // Модули грузим после разбора файлов и в порядке пакета:
+    // объектный модуль NRX должен успеть загрузиться раньше команд, которые на него ссылаются.
+    // Неудачная загрузка не прерывает проверку: команды могли зарегистрироваться при старте nanoCAD.
     QList<ModuleLoadResult> loadedModules;
-    for (const QString& modulePath : package.nrxModules)
-        loadedModules.append(loadNrxModule(modulePath));
+    for (const PackageModule& module : package.modules)
+        loadedModules.append(loadPackageModule(module));
 
     const QStringList catalogMissing = missingCommands(catalog);
     const QStringList menuMissing = missingCommands(menu);
@@ -218,15 +327,18 @@ void package_check_cmd()
                   .arg(package.name.isEmpty() ? QFileInfo(packagePath).fileName() : package.name);
     report += QString::fromWCharArray(L"Файл: %1\n\n").arg(packagePath);
 
-    report += QString::fromWCharArray(L"NRX-модули:\n");
+    report += QString::fromWCharArray(L"Модули:\n");
     if (loadedModules.isEmpty())
-        report += QString::fromWCharArray(L"  в пакете нет nrx-модулей\n");
+        report += QString::fromWCharArray(L"  в пакете нет модулей\n");
     for (const ModuleLoadResult& module : loadedModules)
     {
         const QString status = module.loaded
             ? QString::fromWCharArray(L"загружен")
             : module.message;
-        report += QString::fromWCharArray(L"  %1 — %2\n").arg(module.path, status);
+        const QString type = module.type.isEmpty()
+            ? QString::fromWCharArray(L"?")
+            : module.type;
+        report += QString::fromWCharArray(L"  [%1] %2 — %3\n").arg(type, module.path, status);
     }
     report += QLatin1Char('\n');
 
